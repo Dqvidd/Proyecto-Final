@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+global $pathusuario; 
+$pathusuario = $_ENV['PATHUSUARIO'];
 
 function pathcorrect($path, $file){
     $url = "/root"; //PONER LA RUTA DEL .ENV QUE DEFINIRÉ MÁS TARDE
@@ -26,18 +28,17 @@ class DeleteFilesController extends Controller
 {
     public function deletefiles(Request $request)
     {
+        global $pathusuario;
         $file = $request->input('file');
         $path = $request->input('path');
-        
         $realpath = pathcorrect($path, $file);
 
-        $url = session('url');
-        $url = str_replace("/","+", $url);
-        $url = "/" . substr($url, 1); // Borrar el primer "-" y transformarlo a "/"
 
         if ($realpath == True){
             exec("rm $path/$file"); //Si todo es correcto, podemos ejecutar el comando
         }
+
+        $url = substr($path, strlen($pathusuario) + 1);
         return redirect($url);
 
     }

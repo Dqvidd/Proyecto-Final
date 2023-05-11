@@ -20,7 +20,9 @@ Route::get('/','App\Http\Controllers\UploadFileController@firstDir');
 
 Route::get('/{path}','App\Http\Controllers\UploadFileController@showFiles');
 
-Route::post('/{path}','App\Http\Controllers\UploadFileController@showUploadFile');
+Route::post("", 'App\Http\Controllers\UploadFileController@showUploadFileVacio');
+
+Route::post("/{path}", 'App\Http\Controllers\UploadFileController@showUploadFile');
 
 Route::resource('files', 'App\Http\Controllers\FilesController');
 

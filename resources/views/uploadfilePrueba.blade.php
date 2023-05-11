@@ -44,15 +44,6 @@ const result = url.substring(0, lastPlusIndex);
         <div class="card-body"> 
             @csrf 
             <div class="form-group">
-            <label for="exampleInputEmail1">Ruta</label>
-            <input type="text" id="info" class="form-control" required="" value="{{ $path }}">
-          </div>
-          <div class="flex justify-end pt-2">
-            <!-- <button type="submit" class=" btn-primary text-white bg-indigo-600
-                        hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300
-                        font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save
-                        Profile</button> -->
-            <button type="button" value="Submit" onclick="submitForm()" class=" btn-primary text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Jump</button>
           </div>
           <form method="post" action="" enctype="multipart/form-data"> @csrf <div class="mb-6">
               <label for="archivo" class="block mb-2 text-sm font-medium">Archivo</label>

@@ -6,27 +6,30 @@ use Debugbar;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use function config;
 
-function show($request){
-   $path = "/";
-   if ($request != "root"){
-      $path .= $request->path();
-   } else {
-      $path = "/root";
-   }
-   $path = str_replace("+","/", $path);
-   $listDirectories = "ls -d ".$path."/*/ | rev | cut -d'/' -f 2 | rev";
-   $listFiles = "ls -p ".$path." | grep -v /";
+global $pathusuario; 
+$pathusuario = $_ENV['PATHUSUARIO'];
+
+
+function show($path){
+   global $pathusuario; 
+   $pathusuario .= $path;
+   $pathusuario = str_replace("+","/", $pathusuario);
+   $listDirectories = "ls -d ".$pathusuario."/*/ | rev | cut -d'/' -f 2 | rev";
+   $listFiles = "ls -p ".$pathusuario." | grep -v /";
    $files = array();
    $directories = array();
    exec($listDirectories, $directories);
    exec($listFiles, $files);
-   return array($files, $directories, $path);
+   return array($files, $directories, $pathusuario);
 }
 
 class UploadFileController extends Controller {
    public function showFiles(Request $request) {
-      $result = show($request);
+      $path = "/";
+      $path .= $request->path();
+      $result = show($path);
       $files = $result[0];
       $directories = $result[1];
       $path = $result[2];
@@ -35,23 +38,17 @@ class UploadFileController extends Controller {
       return view('uploadfilePrueba', compact('files', 'directories', 'path'));
    }
    public function showUploadFile(Request $request) {
-
-      $result = show($request);
-      $files = $result[0];
-      $directories = $result[1];
-      $path = $result[2];
+      global $pathusuario;
+      $path = "/";
+      $path .= $request->path();
+      $pathusuario .= $path;
+      $pathusuario = str_replace("+","/", $pathusuario);
       $file = $request->file('archivo')->storeAs(
-        $path,
+        $pathusuario,
         $request->file('archivo')->getClientOriginalName(),
         'public'
     );
-      
-      //return view('uploadfilePrueba', compact('output', 'path'));
-      $url = session('url');
-      $url = str_replace("/","+", $url);
-      $url = "/" . substr($url, 1); // Borrar el primer "-" y transformarlo a "/"
-
-        return redirect($url);
+      return redirect($path);
 
       //Display File Name
 /*       echo 'File Name: '.$file->getClientOriginalName();
@@ -77,8 +74,18 @@ class UploadFileController extends Controller {
       //Antiguo upload $file->move($destinationPath,$file->getClientOriginalName());
    }
 
-   public function firstDir(Request $request){
-      $result = show("root");
+   public function showUploadFileVacio(Request $request){
+      global $pathusuario;
+      $file = $request->file('archivo')->storeAs(
+        $pathusuario,
+        $request->file('archivo')->getClientOriginalName(),
+        'public'
+    );
+      return redirect("/");
+   }
+
+   public function firstDir(Request $request){ 
+      $result = show("/");
       $files = $result[0];
       $directories = $result[1];
       $path = $result[2];
