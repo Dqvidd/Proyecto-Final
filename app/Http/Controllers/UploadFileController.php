@@ -1,5 +1,7 @@
 <?php
 
+#Este controlador se encarga de mostrar tanto los archivos y directorios en pantalla, llamando al view, como subir archivos a la web.
+
 namespace App\Http\Controllers;
 
 use Debugbar;
@@ -13,6 +15,8 @@ $pathusuario = $_ENV['PATHUSUARIO'];
 
 
 function show($path){
+   #Esta función devuelve, dada una ruta, un array con los archivos y directorios en orden. 
+
    global $pathusuario; 
    $pathusuario .= $path;
    $pathusuario = str_replace("+","/", $pathusuario);
@@ -27,17 +31,21 @@ function show($path){
 
 class UploadFileController extends Controller {
    public function showFiles(Request $request) {
-      $path = "/";
+      #Esta función muestra los archivos y directorios llamando al view.
+
+      $path = "";
       $path .= $request->path();
+      $path = substr($path, 1);
       $result = show($path);
       $files = $result[0];
       $directories = $result[1];
       $path = $result[2];
       
-      // return view('uploadfilePrueba', ['output' => $output]);
-      return view('uploadfilePrueba', compact('files', 'directories', 'path'));
+      return view('uploadfile', compact('files', 'directories', 'path'));
    }
    public function showUploadFile(Request $request) {
+      #Esta función permite subir archivos a la web. Recibe el archivo, que lo almacena en la ruta deseada, y devuelve la misma página para que se actualice contenido
+
       global $pathusuario;
       $path = "/";
       $path .= $request->path();
@@ -49,32 +57,11 @@ class UploadFileController extends Controller {
         'public'
     );
       return redirect($path);
-
-      //Display File Name
-/*       echo 'File Name: '.$file->getClientOriginalName();
-      echo '<br>';
-   
-      //Display File Extension
-      echo 'File Extension: '.$file->getClientOriginalExtension();
-      echo '<br>';
-   
-      //Display File Real Path
-      echo 'File Real Path: '.$file->getRealPath();
-      echo '<br>';
-   
-      //Display File Size
-      echo 'File Size: '.$file->getSize();
-      echo '<br>';
-   
-      //Display File Mime Type
-      echo 'File Mime Type: '.$file->getMimeType(); */
-   
-      //Move Uploaded File
-      // $destinationPath = '/root';
-      //Antiguo upload $file->move($destinationPath,$file->getClientOriginalName());
    }
 
    public function showUploadFileVacio(Request $request){
+     #Esta función permite subir el archivo si te encuentras en la ruta / de la web.  
+
       global $pathusuario;
       $file = $request->file('archivo')->storeAs(
         $pathusuario,
@@ -85,13 +72,13 @@ class UploadFileController extends Controller {
    }
 
    public function firstDir(Request $request){ 
-      $result = show("/");
+      #Esta función permite visualizar los archivos y directorios si te encuentras en la ruta / de la web.  
+
+      $result = show("");
       $files = $result[0];
       $directories = $result[1];
       $path = $result[2];
-      
-      // return view('uploadfilePrueba', ['output' => $output]);
-      return view('uploadfilePrueba', compact('files', 'directories', 'path'));
+      return view('uploadfile', compact('files', 'directories', 'path'));
    }
    
 }
