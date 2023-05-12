@@ -18,13 +18,18 @@ git clone https://github.com/Dqvidd/Proyecto-Final.git
 2. Necesitarás módulos de PHP 8.1, por lo cual descarga el repositorio usando:
 
 ```bash
-sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install ca-certificates apt-transport-https
+sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+
 ```
 
 3. Instala los paquetes de PHP 8.1 siguientes:
 
 ```bash
-sudo apt-get install php8.1 php8.1-cli php8.1-common php8.1-json php8.1-mbstring php8.1-mysql php8.1-xml php8.1-zip php8.1-curl
+sudo apt update
+sudo apt-get install php8.1 php8.1-cli php8.1-common php8.1-mbstring php8.1-mysql php8.1-xml php8.1-zip php8.1-curl
 ```
 
 4. Instala el composer:
@@ -50,6 +55,12 @@ php artisan serve --host=0.0.0.0 --port={puerto}
 ```bash
 upload_max_filesize = 2000MB
 post_max_size = 2000MB
+```
+
+8. Para poder elegir la ruta de tu sistema que quieres que se visualice en la web, modifica la siguiente línea del .evn indicando la ruta ABSOLUTA
+
+```bash
+PATHUSUARIO="/"
 ```
 # Documentación
 La documentación de la aplicación se encuentra disponible en el siguiente enlace (Aun por acabar):
