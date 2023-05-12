@@ -57,7 +57,7 @@ upload_max_filesize = 2000MB
 post_max_size = 2000MB
 ```
 
-8. Para poder elegir la ruta de tu sistema que quieres que se visualice en la web, modifica la siguiente línea del .evn indicando la ruta ABSOLUTA
+8. Para poder elegir la ruta de tu sistema que quieres que se visualice en la web, modifica la siguiente línea del .env indicando la ruta ABSOLUTA
 
 ```bash
 PATHUSUARIO="/"
