@@ -40,7 +40,7 @@ class DeleteFilesController extends Controller
         $realpath = pathcorrect($path, $file, $pathusuario);
 
          if ($realpath == True){
-         exec("rm $path/$file"); //Si todo es correcto, podemos ejecutar el comando
+            exec("rm \"$path/$file\""); //Si todo es correcto, podemos ejecutar el comando
         }
 
         $url = substr($path, strlen($pathusuario)); //Resta la path global menos la path del .env, así obtiene la path relativa de la url
