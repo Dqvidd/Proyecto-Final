@@ -45,6 +45,12 @@ composer install
 php artisan serve --host=0.0.0.0 --port={puerto}
 ```
 
+7. En el caso de querer aumentar el máximo tamaño de archivos a subir o descargar, recuerda modificar los siguientes campos del archivo php.ini
+
+```bash
+upload_max_filesize = 2000MB
+post_max_size = 2000MB
+```
 # Documentación
 La documentación de la aplicación se encuentra disponible en el siguiente enlace (Aun por acabar):
 https://david.alert.7e5.gitlab.io/proyecto/
