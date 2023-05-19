@@ -24,8 +24,6 @@ Route::post("", 'App\Http\Controllers\UploadFileController@showUploadFileVacio')
 
 Route::post("/{path}", 'App\Http\Controllers\UploadFileController@showUploadFile');
 
-Route::resource('files', 'App\Http\Controllers\FilesController');
-
 Route::post('/deletefiles/a', 'App\Http\Controllers\DeleteFilesController@deletefiles');
 
 Route::post('/downloadfiles/a', 'App\Http\Controllers\DownloadFilesController@downloadfiles');
