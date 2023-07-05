@@ -68,3 +68,8 @@ https://david.alert.7e5.gitlab.io/proyecto/
 
 # Autores
 - David Alert Franco
+
+# Vista previa
+![image](https://github.com/Dqvidd/Proyecto-Final/assets/82197076/0dcc83aa-73ca-40c6-a061-e4aea2c79251)
+
+
