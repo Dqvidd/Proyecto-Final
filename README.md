@@ -72,4 +72,3 @@ https://david.alert.7e5.gitlab.io/proyecto/
 # Vista previa
 
 [![Watch the video](https://github.com/Dqvidd/Proyecto-Final/assets/82197076/0dcc83aa-73ca-40c6-a061-e4aea2c79251)](https://www.youtube.com/watch?v=bXyudlfT_vs)
-
