@@ -16,14 +16,24 @@ use App\Http\Controllers\FilesController;
 |
 */
 
-Route::get('/','App\Http\Controllers\UploadFileController@firstDir');
+Route::get('/', function () {
+    return view('app'); // 'app' corresponde al archivo resources/views/app.blade.php
+});
 
-Route::get('/{path}','App\Http\Controllers\UploadFileController@showFiles');
 
-Route::post("", 'App\Http\Controllers\UploadFileController@showUploadFileVacio');
 
-Route::post("/{path}", 'App\Http\Controllers\UploadFileController@showUploadFile');
+# Route::get('/','App\Http\Controllers\UploadFileController@firstDir');
 
-Route::post('/deletefiles/a', 'App\Http\Controllers\DeleteFilesController@deletefiles');
+# Route::get('/{path}','App\Http\Controllers\UploadFileController@showFiles');
 
-Route::post('/downloadfiles/a', 'App\Http\Controllers\DownloadFilesController@downloadfiles');
+# Route::post("", 'App\Http\Controllers\UploadFileController@showUploadFileVacio');
+
+# Route::post("/{path}", 'App\Http\Controllers\UploadFileController@showUploadFile');
+
+# Route::post('/deletefiles/a', 'App\Http\Controllers\DeleteFilesController@deletefiles');
+
+# Route::post('/downloadfiles/a', 'App\Http\Controllers\DownloadFilesController@downloadfiles');
+
+# Auth::routes();
+
+# Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

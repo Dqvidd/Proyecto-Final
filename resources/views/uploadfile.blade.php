@@ -21,12 +21,12 @@
     </script>
 
   </head>
-  <body> 
+  <body>
     <div class="container mt-4">
       <div class="card">
-        <div class="card-header text-center font-weight-bold"> Google Drive Casero :) </div>
-        <div class="card-body"> 
-            @csrf 
+        <div class="card-header text-center font-weight-bold"> Google Drive Casero :)</div>
+        <div class="card-body">
+            @csrf
             <div class="form-group">
           </div>
           <form method="post" action="" enctype="multipart/form-data"> @csrf <div class="mb-6">
@@ -51,8 +51,8 @@
                       </button>
                   </div>
                 </div>
-              </div> 
-                @foreach($directories as $directory) 
+              </div>
+                @foreach($directories as $directory)
                 <div class="col-md-4">
                 <div class="card bg-info">
                   <div class="card-body">
@@ -65,8 +65,8 @@
                   </div>
                 </div>
               </div>
-            @endforeach 
-            @foreach($files as $file) 
+            @endforeach
+            @foreach($files as $file)
               <div class="col-md-4">
                 <div class="card">
                   <div class="card-body">
@@ -87,8 +87,8 @@
                     </div>
                   </div>
                 </div>
-              </div> 
-              @endforeach 
+              </div>
+              @endforeach
             </div>
           </div>
         </div>
