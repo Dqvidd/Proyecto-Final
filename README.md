@@ -70,6 +70,5 @@ https://david.alert.7e5.gitlab.io/proyecto/
 - David Alert Franco
 
 # Vista previa
-![image](https://github.com/Dqvidd/Proyecto-Final/assets/82197076/0dcc83aa-73ca-40c6-a061-e4aea2c79251)
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bXyudlfT_vs?si=xo91hmDsK3-RPkni" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
