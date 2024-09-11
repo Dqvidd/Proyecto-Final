@@ -88,71 +88,47 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      directories: [], // Inicializa con datos reales o vacíos
-      files: [], // Inicializa con datos reales o vacíos
-      selectedFile: null
+      files: [],
+      directories: [],
+      loading: true,
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    handleFileChange(event) {
-      this.selectedFile = event.target.files[0];
-    },
-    handleSubmit() {
-      const formData = new FormData();
-      if (this.selectedFile) {
-        formData.append('archivo', this.selectedFile);
-        // TODO: Add your API request logic here
-        // axios.post('/your-upload-endpoint', formData)
-        //   .then(response => {
-        //     // Handle success
-        //   })
-        //   .catch(error => {
-        //     // Handle error
-        //   });
+    async getData() {
+      try {
+        // Realizar la petición GET a tu API
+        const response = await axios.get('/api');
+
+        // Asignar los datos obtenidos a los arrays de archivos y directorios
+        this.files = response.data.files;
+        this.directories = response.data.directories;
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      } finally {
+        this.loading = false;
       }
     },
-    gotoDir(directory) {
-      // TODO: Add your logic to navigate to directory
-      // window.location.href += "+" + directory;
+    gotoDir(dir) {
+      // Actualiza la URL al hacer clic en un directorio
+      window.location.href += "+" + dir;
     },
     gotoPreviousDir() {
-      // TODO: Add your logic to navigate to the previous directory
-      // const url = window.location.href;
-      // const lastPlusIndex = url.lastIndexOf('+');
-      // window.location.href = url.substring(0, lastPlusIndex);
+      // Modifica la URL para volver al directorio anterior
+      const url = window.location.href;
+      const lastPlusIndex = url.lastIndexOf('+');
+      // Obtener la subcadena que comienza desde el inicio hasta la posición del último '+'
+      const result = url.substring(0, lastPlusIndex);
+      window.location.href = result;
     },
-    deleteFile(file) {
-      // TODO: Add your logic to delete a file
-      // axios.post('/deletefiles', { file })
-      //   .then(response => {
-      //     // Handle success
-      //   })
-      //   .catch(error => {
-      //     // Handle error
-      //   });
-    },
-    downloadFile(file) {
-      // TODO: Add your logic to download a file
-      // axios.post('/downloadfiles', { file })
-      //   .then(response => {
-      //     // Handle success
-      //   })
-      //   .catch(error => {
-      //     // Handle error
-      //   });
-    }
   },
-  mounted() {
-    // TODO: Fetch initial data here
-    // axios.get('/your-endpoint')
-    //   .then(response => {
-    //     this.directories = response.data.directories;
-    //     this.files = response.data.files;
-    //   });
-  }
 };
 </script>
 

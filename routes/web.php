@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\DownloadFilesController;
 use App\Http\Controllers\FilesController;
+use App\Http\Controllers\Api\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,12 @@ use App\Http\Controllers\FilesController;
 |
 */
 
-Route::get('/', function () {
-    return view('app'); // 'app' corresponde al archivo resources/views/app.blade.php
-});
+Route::get('/{any}', function () {
+    return view('app'); // Redirige todas las rutas a la vista principal
+})->where('any', '.*');
+
+
+Route::get('/api/{path?}', [FileController::class, 'show']);
 
 
 
