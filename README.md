@@ -62,12 +62,6 @@ post_max_size = 2000MB
 ```bash
 PATHUSUARIO="/"
 ```
-# Documentación
-La documentación de la aplicación se encuentra disponible en el siguiente enlace:
-https://david.alert.7e5.gitlab.io/proyecto/
-
-# Autores
-- David Alert Franco
 
 # Vista previa
 
